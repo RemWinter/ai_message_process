@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/AIreply/static/css/main.246f3b8e.css",
+    "main.js": "/AIreply/static/js/main.a7369bdf.js",
+    "static/js/453.81af48cf.chunk.js": "/AIreply/static/js/453.81af48cf.chunk.js",
+    "index.html": "/AIreply/index.html",
+    "main.246f3b8e.css.map": "/AIreply/static/css/main.246f3b8e.css.map",
+    "main.a7369bdf.js.map": "/AIreply/static/js/main.a7369bdf.js.map",
+    "453.81af48cf.chunk.js.map": "/AIreply/static/js/453.81af48cf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.246f3b8e.css",
+    "static/js/main.a7369bdf.js"
+  ]
+}
