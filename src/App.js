@@ -35,7 +35,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     data = {...data, threadId: threadId}
     setLoading(true)
-    const backendUrl = 'http://localhost:8000/'
+    const backendUrl = 'https://93bll7e8xa.execute-api.eu-west-2.amazonaws.com/dev/'
     const url = backendUrl + 'api/process_message_with_ai/'
     axios.post(url, data, {headers: {"Content-Type": "multipart/form-data"}})
     .then(res => {
@@ -267,7 +267,7 @@ const FormWithSlider = ({close}) => {
     const formData = new FormData()
     formData.append('instructions', inputValue)
     formData.append('temperature', sliderValue)
-    const backendUrl = 'http://localhost:8000/'
+    const backendUrl = 'https://93bll7e8xa.execute-api.eu-west-2.amazonaws.com/dev/'
     const url = backendUrl + 'api/updateAssistantSettings/'
     axios.post(url, formData, {headers: {"Content-Type": "multipart/form-data"}})
     .then(res => {
