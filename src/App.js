@@ -36,11 +36,13 @@ const Login = () => {
     data = {...data, threadId: threadId}
     setLoading(true)
     const backendUrl = 'https://93bll7e8xa.execute-api.eu-west-2.amazonaws.com/dev/'
-    const url = backendUrl + 'api/process_message_with_ai/'
+    // const backendUrl = 'http://localhost:8000/'
+
+    const url = backendUrl + 'api/calc_net_sal'
+    console.log(data)
     axios.post(url, data, {headers: {"Content-Type": "multipart/form-data"}})
     .then(res => {
-      setReply(res.data.reply)
-      setThreadId(res.data.threadId)
+      setReply(res.data.net_salary)
     }).catch((err) => {
       setResError(true)
     }).finally(() => setLoading(false))
@@ -129,7 +131,7 @@ useEffect(() => {
   return (
     <div className={'container'}>
       <div style={{position: 'absolute', top: '20px', right: '20px', cursor: 'pointer'}}>
-      <IoSettingsOutline size={32} onClick={()=> setSettingsOpen(true)}/>
+      {/* <IoSettingsOutline size={32} onClick={()=> setSettingsOpen(true)}/> */}
       </div>
       <div ref={menuRef}
         style={{
@@ -151,12 +153,12 @@ useEffect(() => {
         <FormWithSlider close={() => setSettingsOpen(false)}/>
       </div>
       <div className={'registerDiv'}>
-        <h1 className={'header'}>AI Message Reply</h1>
-        <h2 className={'subHeader'}>Enter a message and get an AI reply</h2>
+        <h1 className={'header'}>Take Home tax calculator</h1>
+        <h2 className={'subHeader'}>Enter your salary before tax</h2>
         <div className={'formDiv'}>
           <form id={'registerForm'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'emailContainer'}>
-              <label className={'label'}>Message:</label>
+              <label className={'label'}>Gross Salary:</label>
               {/* <input 
                 className={`${'input'} ${!!errors.email ? 'inputError' : emailHasBlurred !== null && 'inputSuccess'}`}
                 type="email" {...register('email')}
@@ -165,18 +167,18 @@ useEffect(() => {
                 // onChange={(e) => setEmail(e.target.value.value)}
               />
               {errors.email && <p className={'errorText'}>{errors.email.message}</p>} */}
-              <textarea 
+              <input type='number'
                 style={{height:'auto', width: 'unset', margin: '0', padding: '10px'}}
                 className={`${'input'} ${!!errors.email ? 'inputError' : emailHasBlurred !== null && 'inputSuccess'}`}
                  {...register('userMsg')}
-                placeholder='Enter your Message'
+                placeholder='Enter your gross salary'
                 // onBlur={(e) => handleInputValidation(e.target.value, 'email')}
                 // onChange={(e) => setEmail(e.target.value.value)}
               />
               {errors.userMsg && <p className={'errorText'}>{errors.userMsg.message}</p>}
             </div>
             <div className={'passwordContainer'}>
-              <label className={'label'}>Reply:</label>
+              <label className={'label'}>Net Salary:</label>
               <div style={{position: 'relative', width: '100%'}}>
                 {/* <input 
                   className={`${'input'} ${!!errors.password ? 'inputError' : passwordHasBlurred !== null && 'inputSuccess'}`}
@@ -221,11 +223,11 @@ useEffect(() => {
               </div>
             </div>
             <div className={'btnContainer'}>
-              <button className={'btn'} type="submit">{reply ? 'Send Follow-up' :'Send'}</button>
-              {reply && <button className={'btn'} onClick={(e) => {
+              <button className={'btn'} type="submit">{'Calculate'}</button>
+              {/* {reply && <button className={'btn'} onClick={(e) => {
                 e.preventDefault()
                 setReset(true)
-              }}>Send as New Message</button>}
+              }}>Calculate</button>} */}
             </div>
               {/* {resError && <p style={{textAlign: 'center'}} className={'errorText'}>{resError}</p>} */}
           </form>
